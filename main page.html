@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+.w3-quarter img{margin-bottom: -6px; cursor: pointer}
+.w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
+table, td {border: 1px  black; background-color: white;}
+
+</style>
+<body class="w3-light-grey">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-animate-right w3-top w3-text-light-grey w3-large" style="z-index:3;width:250px;font-weight:bold;display:none;right:0;" id="mySidebar">
+  <a href="javascript:void()" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-32">CLOSE</a> 
+  <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">SIGN IN</a> 
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">ABOUT US</a> 
+  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">CONTACT</a>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-white w3-xlarge w3-padding-16">
+  <span class="w3-left w3-padding">SmartKart</span>
+  <a href="javascript:void(0)" class="w3-right w3-button w3-white" onclick="w3_open()">☰</a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
+
+
+  <!-- Main page -->
+  <div class="w3-row w3-grayscale-min"  style="max-width:1600px;margin-top:83px">
+    <!-- kart -->
+  <div class="w3-container w3-quarter w3-right w3-pale-blue" style="height:1340px" id="kart">
+    <div class="w3-content" style="max-width:400px;margin-bottom:35px;" >
+      <h4 class="w3-center"><b>Your Kart is here</b></h4>
+    </div>
+      
+   <table id="Kart">
+       <tr>
+          <td><b>---</td>
+          <td><b>Product Name ----------------------</b></td>
+          <td><b>Quantity</b></td>
+
+      </tr>
+   </table>
+   <br>
+   <button class="compare w3-center w3-green" style="margin-top:83px" type="button" name="button" onclick="CompareShops()">
+          <p> Search For Best Shop </p>
+   </button>
+  </div>
+
+  
+    <!-- photo grid -->
+    <!-- <<IMPORTANT NOTE:>> alt should be the name of the product -->
+    <div class="w3-quarter">
+      <img src="C:\Users\Sina\Desktop\software\main page\images\kiwi.jpg" style="width:100%" onclick="onClick(this)" alt="Kiwi">
+      <img src="C:\Users\Sina\Desktop\software\main page\images\banana.jpg" style="width:100%" onclick="onClick(this)" alt="Bananas">
+      <img src="C:\Users\Sina\Desktop\software\main page\images\cabbage.jpg" style="width:100%" onclick="onClick(this)" alt="Cabbage">
+   </div>
+    
+   <div class="w3-quarter">
+      <img src="C:\Users\Sina\Desktop\software\main page\images\peach.jpg" style="width:100%" onclick="onClick(this)" alt="Peach">
+      <img src="C:\Users\Sina\Desktop\software\main page\images\purple_grapes.jpg" style="width:100%" onclick="onClick(this)" alt="Purple grapes">
+      <img src="C:\Users\Sina\Desktop\software\main page\images\red_apple.jpg" style="width:100%" onclick="onClick(this)" alt="Red apple">
+    </div>
+    
+    <div class="w3-quarter">
+      <img src="C:\Users\Sina\Desktop\software\main page\images\red_leaf_lettuce.jpg" style="width:100%" onclick="onClick(this)" alt="Red leaf lettuce">
+      <img src="C:\Users\Sina\Desktop\software\main page\images\strawberry.jpg" style="width:100%" onclick="onClick(this)" alt="Strawberry">
+      <img src="C:\Users\Sina\Desktop\software\main page\images\sweet_tangerine.jpg" style="width:100%" onclick="onClick(this)" alt="Sweet tangerin">
+    </div>
+
+  
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-threequarter w3-modal w3-black" style="padding-top:0" >
+    <span class="w3-button w3-black w3-xlarge w3-display-topright" onclick="modal01.style.display='none'">x</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <h1 id="caption"></h1>
+      <!-- Price list on the full size on click. -->
+      <ul id="price_list"><ul>
+       <!-- Quantity -->
+       <div class="Quantity">
+      <button class="plus-btn button" style="padding-top:0" type="button" name="button">
+        <p> + </p>
+      </button>
+      <input id="quantity" type="text" name="name" value="1">
+      <button class="minus-btn" type="button" name="button">
+        <p> - </p>
+      </button>
+      <br>
+      <!-- Add to kart button -->
+      <button class="add_to_kart w3-center" type="button" name="button" onclick="addtoKart()">
+        <p> Add to Kart </p>
+      </button>
+    </div>
+    </div>
+  </div>
+
+
+<!-- End page content -->
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  // You can change element.alt here for the name of the product.
+  captionText.innerHTML = element.alt;
+}
+$('.plus-btn').on('click', function(e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $input = $this.closest('div').find('input');
+        var value = parseInt($input.val());
+        if (value < 100) {
+          value = value + 1;
+        } else {
+          value =100;
+        }
+
+        $input.val(value);
+      });
+      $('.minus-btn').on('click', function(e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $input = $this.closest('div').find('input');
+        var value = parseInt($input.val());
+        if (value > 1) {
+          value = value - 1;
+        } else {
+          value = 0;
+        }
+        $input.val(value);
+
+      });
+
+function addtoKart() {
+  var table = document.getElementById("Kart");
+  var row = table.insertRow(-1);
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  var cell3 = row.insertCell(2);
+  var deletebtn = document.createElement("BUTTON");
+  deletebtn.innerHTML = "x";
+  cell1.appendChild(deletebtn);
+                             // Delete from Kart bottun.
+  deletebtn.addEventListener("click", function(){
+  table.deleteRow(row.rowIndex);
+});
+  cell2.innerHTML = document.getElementById("caption").innerHTML;
+  cell3.innerHTML = document.getElementById("quantity").value;
+}
+
+function CompareShops() {
+ // Here we should decide how to solve the problem of comparing the prices. Is it going to happen here or in the DB?
+}
+</script>
+
+
+</body>
+</html>
